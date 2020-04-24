@@ -70,6 +70,13 @@ button:hover {
  /* box-shadow: eje-x | eje-y | blur-radius | color */
 }
 
+.wrap-login a {
+  text-align: center;
+  margin-left: 45%;
+  margin-right: 45%;
+  padding-top: 5%;
+}
+
 
 /*----Formulario de user y password----*/
 
