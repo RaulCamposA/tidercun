@@ -1,11 +1,11 @@
-CREATE DATABASE tindercun;
+CREATE DATABASE tinder;
 
-USE tindercun;
+USE tinder;
 
 -- TABLE USER
 -- all pasword wil be encrypted using SHA1
-CREATE TABLE users (
-  id INT(11) NOT NULL,
+CREATE TABLE usuarios (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(16) NOT NULL,
   password VARCHAR(60) NOT NULL,
   fullname VARCHAR(100) NOT NULL,
@@ -28,27 +28,12 @@ INSERT INTO sexo (sexo)
 INSERT INTO sexo (sexo) 
   VALUES ('Mujer');
 
-ALTER TABLE users
-  ADD PRIMARY KEY (id);
 
-ALTER TABLE users
-  MODIFY id INT(11) NOT NULL AUTO_INCREMENT;
-
-DESCRIBE users;
-
-SELECT * FROM users;
 
 CREATE TABLE picture(
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR (255),
-  imagen LONGBLOB NOT NULL
-);
-
-
-CREATE TABLE usuario_picture(
-  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  id_user INT(11),
-  id_picture LONGBLOB NOT NULL
+  imagen LONGBLOB NOT NULL,
+  id_usuario INT(11)
 );
 
 
