@@ -20,7 +20,7 @@
       <div class="container-login">
         <div class="wrap-login">
             <h3>Please write your information</h3>
-            <form action="" method="post" role="form" class="contactForm">
+            <form action="./bd/crear_usuario.php" method="post" role="form" class="contactForm">
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Write user name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -28,6 +28,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <input type="password" class="form-control" name="password" id="password" placeholder="New password"  data-msg="Please enter a valid password" />
+                    <div class="validation"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Write your full name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                     <div class="validation"></div>
                 </div>
 
@@ -44,24 +49,29 @@
                     <input type="text" class="form-control" name="city" id="city" placeholder="Your City" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
                     <div class="validation"></div>
                 </div>
-                <select>
-                    <option value="">Sexo</option>
-                        <option value="1">Hombre</option>
-                        <option value="2">Mujer</option>
+                <select name="sexo" id="sexo">                   
+                        <option name="sexo" id="sexo"value="1">Hombre</option>
+                        <option name="sexo" id="sexo" value="2">Mujer</option>
                 </select>
 
                 <div class="form-group">
-                <textarea class="form-control" name="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Write about you"></textarea>
-                <div class="validation"></div>
+                    <textarea class="form-control" name="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Write about you"></textarea>
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Archivos</label>
+                    <div id="imagenes" class="col-sm-8">
+                        <input type="file" class="form-control" id="image" name="image" multiple>
+                    </div>
                 </div>
                 <div class="container-login-form-btn">
-                        <div class="wrap-login-form-btn">
-                            <div class="login-form-bgbtn"></div>
-                            <button type="submit" name="submit" class="login-form-btn">Registrar</button>
-                        </div>
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button type="submit" name="submit" class="login-form-btn">Registrar</button>
                     </div>
-            </form>
+                </div>
 
+            </form>
              <a class="link-text" href="./index.php">Login</a>
 
 
