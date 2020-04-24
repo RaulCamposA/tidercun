@@ -39,6 +39,9 @@
                     </div>
                 </div>
             </form>
+
+            <a class="link-text" href="./registro.php">Register</a>
+
         </div>
     </div>     
         
