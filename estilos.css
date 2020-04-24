@@ -261,3 +261,8 @@ button:hover {
     padding: 77px 15px 33px 15px;
   }
 }
+
+
+#imagenes {
+  max-width: 100%;
+}
