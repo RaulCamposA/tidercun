@@ -41,7 +41,6 @@ $conexion = $objeto->Conectar();
                             $resultado->execute();
                             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
-                            //header("Location: ../index.php");
                             // if($resultado === TRUE){
                             //   echo"Datos guardados";
                               // if($revisar !== false){
