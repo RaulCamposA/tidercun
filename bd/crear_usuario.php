@@ -26,8 +26,8 @@ $conexion = $objeto->Conectar();
                         if($sexo !== false){
                           if($description !== false){
                             // INSERT INTO `usuarios`(`id`, `usuario`, `password`, `fullname`, `puesto`, `escuela`, `ciudad`, `id_sexo`, `about_us`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9])
-                            $consulta = "INSERT INTO usuarios (username, password, fullname, puesto, escuela, ciudad, id_sexo,about_us) VALUES ('$usuario', '$password','$fullname','$job','$school','$city','$sexo','$description')";
-                            echo($consulta);
+                            $consulta = "INSERT INTO users (username, password, fullname, puesto, escuela, ciudad, id_sexo,about_us) VALUES ('$usuario', '$password','$fullname','$job','$school','$city','$sexo','$description')";
+                            //echo($consulta);
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();
 
@@ -40,6 +40,7 @@ $conexion = $objeto->Conectar();
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();
                             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+                            header( "refresh:5;url=../index.php" ); 
 
                             // if($resultado === TRUE){
                             //   echo"Datos guardados";
@@ -76,7 +77,7 @@ $conexion = $objeto->Conectar();
             }
           }
         }
-         print json_encode($data, JSON_UNESCAPED_UNICODE);
+        //  print json_encode($data);
         //  print($resultado); //enviar el array final en formato json a JS
         $conexion = NULL;
 ?>
