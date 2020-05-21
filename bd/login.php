@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 include_once 'conexion.php';
 $objeto = new Conexion();
@@ -18,8 +19,17 @@ $resultado->execute();
 if($resultado->rowCount() >= 1){
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
     $_SESSION["s_usuario"] = $usuario;
+
+    $consulta = "SELECT id FROM users WHERE username='$usuario' AND password='$password' ";
+    $resultado = $conexion->prepare($consulta);
+    $resultado->execute();
+    $data=$resultado->fetch(PDO::FETCH_ASSOC);
+    $a=$data['id'];
+    $_SESSION['id'] = $a;
+    
 }else{
     $_SESSION["s_usuario"] = null;
+    $_SESSION['id'] = null;
     $data=null;
 }
 

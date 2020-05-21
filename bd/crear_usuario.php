@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+ob_start();
 include_once './conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
@@ -15,7 +15,6 @@ $conexion = $objeto->Conectar();
             $city = filter_var($_POST["city"]);
             $sexo = filter_var($_POST["sexo"]);
             $description = filter_var($_POST["description"]);
-            // $revisar = getimagesize($_FILES["image"]["tmp_name"]);
 
             if($usuario !== false){              
               if($password !== false){
@@ -30,38 +29,41 @@ $conexion = $objeto->Conectar();
                             //echo($consulta);
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();
+                     
 
-                            // $consulta = "SELECT id FROM usuarios WHERE usuario = '$usuario' AND password='$password' AND fullname='$fullname' AND puesto='$job' AND escuela='$school' AND id_sexo = '$sexo' AND about_us='$description'";
-                            // $resultado = $conexion->prepare($consulta);
-                            // $resultado->execute();
-                            // $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-
-                            $consulta = "SELECT * FROM usuarios";
+                            // SELECT id FROM `users` WHERE username = "Jocabed"  and password = "1234"  and puesto = "diseñadora" and escuela = "Unicaribe" and ciudad = "Cancún Quintana Roo" and id_sexo = "2" and about_us = "kjdfbhdkfasdf";
+                            $consulta = "SELECT id FROM users WHERE username ='$usuario' and password = '$password' and fullname = '$fullname' and puesto = '$job' and escuela = '$school' and ciudad = '$city' and id_sexo = '$sexo' and about_us = '$description'";
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();
-                            $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-                            header( "refresh:5;url=../index.php" ); 
+                            $data=$resultado->fetch(PDO::FETCH_ASSOC);
+                            $a=$data['id'];
+                            // echo $a;
 
-                            // if($resultado === TRUE){
-                            //   echo"Datos guardados";
-                              // if($revisar !== false){
-                              //   $image = $_FILES['image']['tmp_name'];
-                              //   $imgContenido = addslashes(file_get_contents($image));                              
-                              //   //Insertar imagen en la base de datos
-                              //   $insertar = $db->query("INSERT into images_tabla (imagenes, creado) VALUES ('$imgContenido', now())");
-                              //   // COndicional para verificar la subida del fichero
-                              //   if($insertar){
-                              //       echo "Archivo Subido Correctamente.";
-                              //   }else{
-                              //       echo "Ha fallado la subida, reintente nuevamente.";
-                              //   } 
-                              //   // Sie el usuario no selecciona ninguna imagen
-                              // }else{
-                              //     echo "Por favor seleccione imagen a subir.";
-                              // }
+                            if((isset($_FILES['miArchivo'])) && ($_FILES['miArchivo'] !='')){
+                              // echo"si entro";
+                              $file = $_FILES['miArchivo']; //Asignamos el contenido del parametro a una variable para su mejor manejo                              
+                              $temName = $file['tmp_name']; //Obtenemos el directorio temporal en donde se ha almacenado el archivo;
+                              $fileName = $file['name']; //Obtenemos el nombre del archivo
+                              $fileExtension = substr(strrchr($fileName, '.'), 1); //Obtenemos la extensiÃ³n del archivo.
+                              
+                              //Comenzamos a extraer la informaciÃ³n del archivo
+                              $fp = fopen($temName, "rb");//abrimos el archivo con permiso de lectura
+                              $contenido = fread($fp, filesize($temName));//leemos el contenido del archivo
+                              //Una vez leido el archivo se obtiene un string con caracteres especiales.
+                              $contenido = addslashes($contenido);//se escapan los caracteres especiales
+                              fclose($fp);//Cerramos el archivo
+                              
+                              //Insertando los datos
+                              //Creando el query
+                              $query = "INSERT INTO img (fileName ,extension ,binario, id_users) VALUES ('$fileName' ,'$fileExtension' ,'$contenido','$a')";
+                              //Ejecutando el Query
+                              // $result = mysqli_query($conexion, $query);
+                              $resultado = $conexion->prepare($query);
+                              $resultado->execute();
 
-                            // }else{echo"Error".$insertar}
-                                            
+                              header('Location: ../index.php');
+                            }
+
                           }
 
                         }
@@ -78,6 +80,6 @@ $conexion = $objeto->Conectar();
           }
         }
         //  print json_encode($data);
-        //  print($resultado); //enviar el array final en formato json a JS
+        //  echo($resultado); //enviar el array final en formato json a JS
         $conexion = NULL;
 ?>

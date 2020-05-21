@@ -32,9 +32,15 @@
             include_once './bd/functions.php';
             $conexion = conect();
             $user=$_SESSION['id'];
-    
 
-            $consulta = "SELECT * FROM users WHERE id != $user";
+            $consulta = "SELECT id_user1,id_user2 FROM lke WHERE (like1 = 1 and like2 = 1) and (id_user1 = $user or id_user2= $user)";//Buscar en la tabla de likes los match creados
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            $data = $resultado->fetch(PDO::FETCH_ASSOC); 
+            $u1=$data['id_user1'];
+            $u2=$data['id_user2'];
+
+            $consulta = "SELECT * FROM users WHERE (id != $user) and ((id=$u1)or(id=$u2)) ";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
 
@@ -82,5 +88,3 @@
     <?php require_once "vistas/parte_inferior.php"?>
 </body>
 </html>
-
-

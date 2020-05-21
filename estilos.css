@@ -21,7 +21,8 @@
 *{
 	margin: 0px; 
 	padding: 0px; 
-	box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 body, html {
@@ -62,6 +63,15 @@ button:hover {
 
 .wrap-login {
   width: 400px;
+  background: #eceff1;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 77px 55px 53px 55px;
+  -webkit-box-shadow: 25px 40px 28px 0px rgba(0, 0, 0, 0.38);
+ /* box-shadow: eje-x | eje-y | blur-radius | color */
+}
+.wrap-register {
+  width: 550px;
   background: #eceff1;
   border-radius: 20px;
   overflow: hidden;

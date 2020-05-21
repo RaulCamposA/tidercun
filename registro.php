@@ -18,9 +18,9 @@
     <body>
      
       <div class="container-login">
-        <div class="wrap-login">
+        <div class="wrap-register">
             <h3>Please write your information</h3>
-            <form action="./bd/crear_usuario.php" method="post" role="form" class="contactForm">
+            <form action="./bd/crear_usuario.php" method="post" role="form" class="contactForm" enctype="multipart/form-data">
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Write user name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -59,9 +59,9 @@
                     <div class="validation"></div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Archivos</label>
+                    <label >Sube una foto.</label>
                     <div id="imagenes" class="col-sm-8">
-                        <input type="file" class="form-control" id="image" name="image" multiple>
+                        <input type="file" name="miArchivo"></td>
                     </div>
                 </div>
                 <div class="container-login-form-btn">
