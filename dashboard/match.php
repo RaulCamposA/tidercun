@@ -55,7 +55,6 @@
                         <th>School</th>
                         <th>City</th>
                         <th>Information</th>
-                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <?php
@@ -67,13 +66,6 @@
                         <td><?php echo $row['escuela'];?></td>
                         <td><?php echo $row['ciudad'];?></td>
                         <td><?php echo $row['about_us'];?></td>
-                        <td>
-                            
-                            <a href="index.php?like=<?php echo $row['id'];?>"
-                                class="btn btn-info">Like</a>
-                            <a href="index.php?dislike=<?php echo $row['id'];?>"
-                                class="btn btn-danger">Dislike</a>
-                        </td>
                     </tr> 
                     <?php endwhile;?>    
             </table>
